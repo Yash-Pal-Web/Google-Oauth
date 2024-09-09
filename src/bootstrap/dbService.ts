@@ -1,8 +1,10 @@
 import config from "../config/env";
 import { DataSource } from "typeorm";
 import logger from "../utils/logger";
-import { Account } from "../components/user/userModel";
+import { Turnament } from "../components/user/turnamentModel";
 import { SERVER_MESSAGE } from "../constant";
+import { Player } from "../components/user/playerModel";
+import { Room } from "../components/user/roomsModel";
 
 class Database {
   public AppDataSource: DataSource;
@@ -15,7 +17,7 @@ class Database {
       username: config.dbconfig.dbuser,
       password: config.dbconfig.dbpassword,
       database: config.dbconfig.dbname,
-      entities: [Account],
+      entities: [Player,Room, Turnament],
       synchronize: true,
       logging: false,
     });
@@ -24,7 +26,7 @@ class Database {
   async connectDatabase() {
     (await this.AppDataSource.initialize()).synchronize(false).then(() => {
       logger.info(SERVER_MESSAGE.DATABASE_CONNECTION);
-      console.log("database connected successfully")
+      //console.log("database connected successfully")
     });
   }
 }

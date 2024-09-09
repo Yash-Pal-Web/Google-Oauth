@@ -6,8 +6,9 @@ import path from 'path';
 
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import passport from 'passport';
-import { access } from 'fs';
-import { profile } from 'console';
+
+import bodyParser from 'body-parser';
+
 
 
 
@@ -15,6 +16,8 @@ import { profile } from 'console';
 export default async ({ app }: { app: Application }) => {
     app.use(express.json({ limit: '5mb' }));
     app.use(express.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    //app.use(express.json());
     
   
     // set view engine and its path
@@ -58,7 +61,7 @@ export default async ({ app }: { app: Application }) => {
          `);
     });
   
-   // app.use(errorHandler);
+    //app.use(errorHandler);
   
     return app;
   };

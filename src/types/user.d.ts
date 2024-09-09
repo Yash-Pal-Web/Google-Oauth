@@ -17,18 +17,25 @@ export interface UserController {
 }
 
 export interface IUserBody {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
+  tournament_name:string;
+  creator_name:string;
   
-  password: string;
-  birthday:Date;
+ 
 }
 
-export interface ILoginUserBody {
-  email: string;
-  password: string;
+export interface IRoomBody {
+  turnament_id:string;
+  roomName: string;
+  tournament: string;
+}
+export interface IRoomJoinBody{
+  roomId:string;
+  playerName:string;
+  room: string
+}
+interface IScoreBody {
+  playerId: number;
+  score: number; 
 }
 
 export interface IVerifyUserBody {

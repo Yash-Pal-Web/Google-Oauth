@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import 'reflect-metadata';
 import 'express-async-errors';
-import Uservalidator from './userValidation';
+
 
 import Account from './userController';
 
@@ -12,50 +12,39 @@ const route = Router();
  * @method POST
  * @route api/v1/user/create
  * @access PUBLIC
- * @description Route to create new user
+ * @description Route to create new tournament
  */
-
-route.post('/create', Uservalidator.createUserValidation, Account.createUser);
-route.post('/login',  Uservalidator.loginUserValidation, Account.loginUser);
-route.put('/update', Uservalidator.updateValidation, Account.updateUser);
-
-
-route.get('/:user_id', Account.getUserById);
-route.delete('/:userId', Account.deleteUserById);
-
-route.get('/getuser/showallusers', Account.getAllUser);
-
+route.post('/create-tournament', Account.createTournament);
 /**
  * @method POST
- * @route api/v1/user/update
+ * @route api/v1/user/create
  * @access PUBLIC
- * @description Route to update existing user
+ * @description Route to create new room
  */
-// route.post('/update', Uservalidator.updateValidation, User.updateUser);
 
-/**
- * @method GET
- * @route api/v1/user/user-list
- * @queryParms api/v1/user/user-list
+ route.post('/create-room', Account.createRoom);
+ /**
+ * @method POST
+ * @route api/v1/user/create
  * @access PUBLIC
- * @description Route to fetch user list
+ * @description Route to create new joinRoom
  */
-// route.get('/user-list', User.getUserList);
+ route.post('/join-room', Account.joinRoom);
+ /**
+ * @method POST
+ * @route api/v1/user/create
+ * @access PUBLIC
+ * @description Route to create new player score
+ */
+ route.post('/player-score', Account.savePlayerScore);
+ /**
+ * @method update
+ * @route api/v1/user/updatew-winner
+ * @access PUBLIC
+ * @description Route to update winner
+ */
+ route.put('/update-winner', Account.updateWinner);
 
-/**
- * @method GET
- * @route api/v1/user/:userid
- * @access PUBLIC
- * @description Route to fetch user information
- */
-// route.get('/:userid', User.getUser);
 
-/**
- * @method DELETE
- * @route api/v1/user/:userid
- * @access PUBLIC
- * @description Route to delete user from database
- */
-// route.delete('/:userid', User.deleteUser);
 
 export default route;
